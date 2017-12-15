@@ -1,7 +1,7 @@
 import re
 
 a = open("CvixLerC9.csv", "r")
-b = open("CvixLerC9Rready.csv", "w")
+b = open("CvixLerC9Rready3.csv", "w")
 
 counter = 0
 counter2 = 1
@@ -20,7 +20,7 @@ for line in a:
         #print(line.rstrip('\n'))
         row += line
     else:
-        head = str(line.rstrip())
+        head = str(line.rstrip().split("(")[0])
         head = re.sub('\s+', '', head)
         head = re.sub(',', '', head)
         counter2+=1
