@@ -5,6 +5,8 @@ b <- b[-1,]
 
 c <- read.csv("~/QTL/CvixLerC9.qua")
 
-for(i in ncol(b)){
-  
-}
+d <- cbind("anova")
+
+#for(i in ncol(b)){
+#  d <- rbind(d, aov())
+#}
