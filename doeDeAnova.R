@@ -17,7 +17,7 @@ colnames(abTable)[ncol(abTable)] <- "Phenotype"                 # Give the last 
 phenoData <- suppressWarnings(transform(abTable, Phenotype = as.numeric(levels(Phenotype))[Phenotype]))
                                                                 # Tell R that the data is numeric. If not: data is corrupted
                                                                 # The supress warning is the warning that if a letter is in the data it will be conferted to NA
-
+View(abTable)
 abTable[abTable=="-"] <- NA                                     # Replace unavailable data with NA
 
 # Create function that put multple strings from vector in a single string
@@ -72,6 +72,7 @@ for(naam in colnames(abTable[1:ncol(abTable)-1])){
   # If else statement to either create and add the first data row 
   # or add new data rows to the result matrix
   if(is.null(resultMatrix)){
+    if(pValue<0.05){
     resultMatrix <- matrix(c(marker,aovAllowed,pValue,fValue,
                              plantsA,nPlantsA,meanA,varA,
                              plantsB,nPlantsB,meanB,varB,
@@ -81,12 +82,15 @@ for(naam in colnames(abTable[1:ncol(abTable)-1])){
                                 "plants B", "n B", "mean B","var.B", 
                                 "SS between groups","SS within groups",
                                 "Excluded plants")
+    }
   } else {
+    if(pValue<0.05){
     resultMatrix <- rbind(resultMatrix, 
                         c(marker,aovAllowed,pValue,fValue,
                           plantsA,nPlantsA,meanA,varA,
                           plantsB,nPlantsB,meanB,varB,
                           SSbetween,SSwithin,containNA))
+    }
   }
 }
 write.xlsx(resultMatrix,"resultTable.xlsx",row.names = F)         # Save the result matrix in a xlsx file without rownumbers
