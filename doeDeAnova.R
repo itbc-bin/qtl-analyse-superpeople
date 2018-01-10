@@ -17,9 +17,9 @@ colnames(abTable)[ncol(abTable)] <- "Phenotype"                 # Give the last 
 phenoData <- suppressWarnings(transform(abTable, Phenotype = as.numeric(levels(Phenotype))[Phenotype]))
                                                                 # Tell R that the data is numeric. If not: data is corrupted
                                                                 # The supress warning is the warning that if a letter is in the data it will be conferted to NA
-View(abTable)
-abTable[abTable=="-"] <- NA                                     # Replace unavailable data with NA
 
+abTable[abTable=="-"] <- NA                                     # Replace unavailable data with NA
+View(abTable)
 # Create function that put multple strings from vector in a single string
 getNames <- function(x,print=TRUE,npar=TRUE){
   p <- NULL
